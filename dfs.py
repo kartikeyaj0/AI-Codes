@@ -24,11 +24,11 @@ def depth_first_search(initial, goal_state):
 	initial_cost = 0;	
 	frontier = []
 	frontier.insert(0, initial)
-	print frontier
+	print 'frontier', ffrontier
 	explored = []
 	solution = []
 	while True:
-		print '\n\n'
+		print '\n'
 		if (not frontier) == True:
 			print 'error'
 			return
@@ -43,7 +43,7 @@ def depth_first_search(initial, goal_state):
 		print 'frontier', frontier
 		print 'explored', explored
 		for child in children:
-			print '\n currently for child', child
+			print '\nfound child', child
 			if child not in explored and child not in frontier:
 				frontier.insert(0,child)
 		print 'frontier modified', frontier
