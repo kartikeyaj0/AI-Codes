@@ -23,8 +23,8 @@ road_map = dict(
 def depth_first_search(initial, goal_state):
 	initial_cost = 0;	
 	frontier = []
-	frontier.insert(0, initial)
-	print 'frontier', ffrontier
+	frontier.insert(0, [initial, initial])
+	print 'frontier', frontier
 	explored = []
 	solution = []
 	while True:
@@ -34,21 +34,22 @@ def depth_first_search(initial, goal_state):
 			return
 		node = frontier.pop(0)
 		print node
-		if node == goal_state:
+		if node[0] == goal_state:
+			print '\nSuccessful\n'
+			solution = [item[0] for item in explored]
+			solution.append(goal_state)
+			print 'path', solution
 			return
 		explored.append(node)
 		children = []
-		children = road_map[node].keys()
+		children = road_map[node[0]].keys()
 		print 'children', children
 		print 'frontier', frontier
 		print 'explored', explored
 		for child in children:
 			print '\nfound child', child
-			if child not in explored and child not in frontier:
-				frontier.insert(0,child)
+			if child not in [item[0] for item in explored] and child not in [item_1[0] for item_1 in frontier]:
+				frontier.insert(0,[child,node[0]])
 		print 'frontier modified', frontier
-# print not[]
-# cities = road_map.keys()
-# for x in cities:
-# 	print x, min(road_map[x], key = road_map[x].get)
+		print 'explored', explored
 depth_first_search('Arad', 'Bucharest')
